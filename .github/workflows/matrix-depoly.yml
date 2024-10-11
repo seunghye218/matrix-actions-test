@@ -8,9 +8,19 @@ jobs:
     strategy:
         matrix:
           runner: [prod-a, prod-b]
+        fail-fast: true
     runs-on: ${{ matrix.runner }}
       # runs-on: [self-hosted, macOS, X64, prod]
     steps:
-      - name: hello
-        run: echo "hellow, world!"
+      - name: Check runner
+        run: |
+            if [ "${{ matrix.runner }}" = "prod-a" ]; then
+              echo "This is prod-a, will succeed"
+            else
+              echo "This is not prod-a, will fail"
+              exit 1
+            fi
+
+      - name: Hello
+        run: echo "Hello, world!"
       
