@@ -7,7 +7,7 @@ jobs:
   be-depoly:
     strategy:
         matrix:
-          runner: [a, b]
+          runner: [prod-a, prod-b]
     runs-on: ${{ matrix.runner }}
       # runs-on: [self-hosted, macOS, X64, prod]
     steps:
